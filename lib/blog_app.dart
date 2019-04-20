@@ -30,7 +30,11 @@ class Home extends StatelessWidget {
         title: Text("Hello Flutter"),
       ),
       body: Container(
-        
+        child: SafeArea(
+          child: Column(
+            
+          ),
+        ),
       ),
     );
   }
