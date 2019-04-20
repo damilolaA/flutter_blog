@@ -48,7 +48,7 @@ class Home extends StatelessWidget {
   final onChanged;
   
   Widget build(BuildContext context) {
-    print('theme, ${options.theme}');
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         title: Text("Hello Flutter"),
@@ -67,7 +67,7 @@ class Home extends StatelessWidget {
                     ));
                   },
                   activeColor: const Color(0xFF39CEFD),
-                  activeTrackColor: Colors.lightGreenAccent
+                  activeTrackColor: isDark ? Colors.white30 : Colors.black26
                 ),
               )
             ],
