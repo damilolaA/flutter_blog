@@ -53,12 +53,12 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("Hello Flutter"),
       ),
-      body: Container(
+      body: Center(
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
+              Container(
                 child: Switch(
                   value: options.theme == kDarktheme,
                   onChanged: (bool value) {
@@ -68,6 +68,12 @@ class Home extends StatelessWidget {
                   },
                   activeColor: const Color(0xFF39CEFD),
                   activeTrackColor: isDark ? Colors.white30 : Colors.black26
+                ),
+              ),
+              Container(
+                child: Text(
+                  "Hello World",
+                  style: Theme.of(context).textTheme.title,
                 ),
               )
             ],
@@ -89,15 +95,21 @@ final BlogTheme kLighttheme = BlogTheme._("light", _buildLightTheme());
 final BlogTheme kDarktheme = BlogTheme._("dark", _buildDarkTheme());
 
 ThemeData _buildDarkTheme() {
-  final ThemeData base = ThemeData.dark();
+  final ThemeData base = ThemeData(
+    brightness: Brightness.dark,
+    fontFamily: "Averta"
+  );
   return base.copyWith(
     primaryColor: primary,
-    brightness: Brightness.dark
+    brightness: Brightness.dark,
   );
 }
 
 ThemeData _buildLightTheme() {
-  final ThemeData base = ThemeData.light();
+  final ThemeData base = ThemeData(
+    brightness: Brightness.light,
+    fontFamily: "Averta"
+  );
   return base.copyWith(
     primaryColor: primary,
     brightness: Brightness.light
