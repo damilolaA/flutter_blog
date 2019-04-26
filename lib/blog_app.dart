@@ -4,6 +4,7 @@ import 'app_config.dart';
 import 'styles/index.dart';
 import 'custom/index.dart';
 import './bloc/index.dart';
+import './widgets/scenes/index.dart';
 
 class BlogApp extends StatefulWidget {
 
@@ -48,7 +49,8 @@ class _BlogAppState extends State<BlogApp> {
           title: "Blog App",
           theme: _options.theme.data,
           debugShowCheckedModeBanner: false,
-          home: Home(_options, onOptionsChanged),
+          // home: Home(_options, onOptionsChanged),
+          home: Splash(),
         ),
       ),
     );
