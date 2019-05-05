@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/index.dart';
 import '../../../styles/index.dart';
 
+const kDurationInSeconds = Duration(seconds: 5);
 class Splash extends StatefulWidget {
 
   SplashState createState() => SplashState();
@@ -19,6 +20,8 @@ class SplashState extends State<Splash> {
 
     ConnectionStatusSingleton _connectionStatus = ConnectionStatusSingleton.getInstance();
     _connectionChangeStream = _connectionStatus.connectionChange.listen(connectionChanged);
+
+    goToHome();
   }
 
   void connectionChanged(dynamic hasConnection) {
@@ -32,35 +35,21 @@ class SplashState extends State<Splash> {
     super.dispose();
   }
 
+  Future<void> goToHome() async{
+    return Timer(kDurationInSeconds, () => Navigator.of(context).pushReplacementNamed("/Main"));
+  }
+
   Widget _buildSplashData(context) {
     return Container(
-      color: darkBlack,
-      padding: EdgeInsets.symmetric(vertical: 150.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Center(
-            child: Image.asset(
-              'lib/assets/logo/vibzn-logo.png',
-              width: 200.0,
-            )
-          ),
-          // Center(
-          //   child: SizedBox(
-          //     width: 30.0,
-          //     height: 30.0,
-          //     child: CircularProgressIndicator(
-          //       value: null,
-          //       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          //     ),
-          //   ),
-          // )
-        ],
+      color: black,
+      child: Center(
+        child: Image.asset(
+          'lib/assets/logo/vibzn-logo.png',
+          width: 200.0,
+        )
       ),
     );
   }
-
 
   Widget build(BuildContext context) {
     return Scaffold(
