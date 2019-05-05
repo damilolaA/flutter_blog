@@ -11,8 +11,7 @@ class Splash extends StatefulWidget {
 class SplashState extends State<Splash> {
 
   StreamSubscription _connectionChangeStream;
-
-  bool isOffline = false;
+  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
   void initState() {
@@ -23,9 +22,9 @@ class SplashState extends State<Splash> {
   }
 
   void connectionChanged(dynamic hasConnection) {
-    setState(() {
-      isOffline = !hasConnection;
-    });
+    if(!hasConnection) {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("No internet connection, please connect to an internet"),));
+    }
   }
 
   dispose() {
@@ -35,7 +34,7 @@ class SplashState extends State<Splash> {
 
   Widget _buildSplashData(context) {
     return Container(
-      color: black,
+      color: darkBlack,
       padding: EdgeInsets.symmetric(vertical: 150.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,32 +61,13 @@ class SplashState extends State<Splash> {
     );
   }
 
-  Widget _buildConnectionFrame() {
-    final connectionText = isOffline ? "Not connected" : "Connected";
-    return SafeArea(
-      top: false,
-      child: Material(
-        elevation: 6.0,
-        color: Colors.white,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '$connectionText',
-              style: TextStyle(color: Colors.white),
-            ),
-          ]
-        ),
-      )
-    );
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: Stack(
         children: <Widget>[
           _buildSplashData(context),
-          _buildConnectionFrame(),
         ],
       ),
     );

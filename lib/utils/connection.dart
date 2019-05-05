@@ -17,7 +17,6 @@ class ConnectionStatusSingleton {
 
   void initialize() {
     _connectivity.onConnectivityChanged.listen(_connectionChanged);
-    checkConnection();
   }
 
   Stream get connectionChange => _connectionChangeController.stream;
@@ -27,21 +26,19 @@ class ConnectionStatusSingleton {
   }
 
   Future<bool> checkConnection()async {
-    bool previousConnection = hasConnection;
-
     try{
       final result = await InternetAddress.lookup('google.com');
+      print('googleResult, $result');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-          hasConnection = true;
+        hasConnection = true;
       } else {
-          hasConnection = false;
+        hasConnection = false;
       }
     } on SocketException {
+      hasConnection = false;
+    }
+    _connectionChangeController.add(hasConnection);
 
-    }
-    if (previousConnection != hasConnection) {
-      _connectionChangeController.add(hasConnection);
-    }
     return hasConnection;
   }
 
