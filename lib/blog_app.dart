@@ -40,6 +40,11 @@ class _BlogAppState extends State<BlogApp> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AppProvider(
       config: widget.config,
@@ -50,8 +55,9 @@ class _BlogAppState extends State<BlogApp> {
           theme: _options.theme.data,
           debugShowCheckedModeBanner: false,
           home: Splash(),
+          // home: Main(_options, _onOptionsChanged),
           routes: <String, WidgetBuilder>{
-            "/Main": (BuildContext context) => Main(_options, _onOptionsChanged)
+            "/Main": (BuildContext context) => Main(_options, _onOptionsChanged),
           },
         ),
       ),
