@@ -12,6 +12,19 @@ class Main extends StatelessWidget {
   final BlogOptions options;
   final onChanged;
   
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: AppBar(
+  //       title: Text("Hello Flutter"),
+  //     ),
+  //     body: Container(
+  //       child: Center(
+  //         child: Text("Hello World"),
+  //       ),
+  //     ),
+  //   );
+  // }
+
   Widget build(BuildContext context) {
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
     final UserBloc _userBloc = BlocProvider.of<UserBloc>(context);
@@ -51,30 +64,6 @@ class Main extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0),
-            child: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                _userBloc.dispatch(CounterEvent.increment);
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.0),
-            child: FloatingActionButton(
-              child: Icon(Icons.remove),
-              onPressed: () {
-                _userBloc.dispatch(CounterEvent.decrement);
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
