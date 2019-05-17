@@ -14,19 +14,6 @@ class SplashState extends State<Splash> {
   StreamSubscription _connectionChangeStream;
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
-  // SplashState() {
-  //   _timer = Timer(
-  //     kDurationInSeconds, 
-  //     () {
-  //       setState(() => {
-  //         // Navigator.of(context).pushReplacementNamed("/Main")
-  //       });
-  //       return Navigator.of(context).pushReplacementNamed("/Main");
-  //     }
-  //     // () => Navigator.of(context).pushReplacementNamed("/Main")
-  //   );
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -36,11 +23,6 @@ class SplashState extends State<Splash> {
 
     goToHome();
   }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  // }
 
   void connectionChanged(dynamic hasConnection) {
     if(!hasConnection) {
