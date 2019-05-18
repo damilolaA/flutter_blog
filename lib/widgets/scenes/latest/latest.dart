@@ -31,12 +31,15 @@ class LatestState extends State<Latest> {
       builder: (_, PostsState state) {
         if(state is PostsLoaded) {
           final posts = state.posts;
-          // print('posts, $posts');
+          print('posts, $posts');
           return Container(
             child: Center(
               child: Icon(Icons.accessibility, size: 50.0, color: Colors.brown,),
             ),
           );
+        }else {
+          print("i got here");
+          return Container();
         }
       },
     );

@@ -5,29 +5,54 @@ import '../utils/index.dart';
 import './title.dart';
 import './content.dart';
 import './excerpt.dart';
+import './guid.dart';
 class Posts extends Equatable {
   int id;
   String link;
   DateTime date;
+  DateTime dateGmt;
   Title title;
   Content content;
   Excerpt excerpt;
   num author;
   String imageUrl;
-  // List<dynamic> categories;
-  // List<dynamic> tags;
+  List<dynamic> categories;
+  List<dynamic> tags;
+  Guid guid;
+  String status;
+  String slug;
+  String type;
+  DateTime modified;
+  DateTime modifiedGmt;
+  num featuredMedia;
+  String commentStatus;
+  String pingStatus;
+  bool sticky;
+  String template;
 
   Posts({
     this.id,
     this.link,
     this.date,
+    this.dateGmt,
     this.title,
     this.content,
     this.excerpt,
     this.author,
     this.imageUrl,
-    // this.categories,
-    // this.tags,
+    this.categories,
+    this.tags,
+    this.guid,
+    this.status,
+    this.slug,
+    this.type,
+    this.modified,
+    this.modifiedGmt,
+    this.featuredMedia,
+    this.commentStatus,
+    this.pingStatus,
+    this.sticky,
+    this.template,
   });
 
   Posts.fromMap(Map<String, dynamic> map) {
@@ -35,13 +60,25 @@ class Posts extends Equatable {
     id = map['id'];
     link = map['link'];
     date = DateTime.fromMillisecondsSinceEpoch(parseDate(map['date'])) ?? DateTime.now();
+    dateGmt = DateTime.fromMillisecondsSinceEpoch(parseDate(map['date_gmt'])) ?? DateTime.now();
     title = map['title'] != null ? Title.fromMap(map['title'].cast<String, dynamic>()) : null;
     content = map['content'] != null ? Content.fromMap(map['content'].cast<String, dynamic>()) : null;
     excerpt = map['excerpt'] != null ? Excerpt.fromMap(map['excerpt'].cast<String, dynamic>()) : null;
     author = map['author'];
     imageUrl = map['jetpack_featured_media_url'];
-    // categories = map["categories"] != null ? (map['catergories'] as List)?.map((category) => category)?.toList() : null;
-    // tags = map['tags'] != null ? (map['tags'] as List)?.map((tag) => tag)?.toList() : null;
+    categories = map["categories"] != null ? (map['catergories'] as List)?.map((category) => category)?.toList() : null;
+    tags = map['tags'] != null ? (map['tags'] as List)?.map((tag) => tag)?.toList() : null;
+    guid = map['guid'] != null ? Guid.fromMap(map['guid'].cast<String, dynamic>()) : null;
+    status = map['status'];
+    slug = map['slug'];
+    type = map['type'];
+    modified = DateTime.fromMillisecondsSinceEpoch(parseDate(map['modified'])) ?? DateTime.now();
+    modifiedGmt = DateTime.fromMillisecondsSinceEpoch(parseDate(map['modified_gmt'])) ?? DateTime.now();
+    featuredMedia = map['featured_media'];
+    commentStatus = map['comment_status'];
+    pingStatus = map['ping_status'];
+    sticky = map['sticky'];
+    template = map['template'];
   }
 
   Map<String, dynamic> toMap() {
@@ -54,8 +91,19 @@ class Posts extends Equatable {
       "excerpt": excerpt?.toMap(),
       "author": author,
       "imageUrl": imageUrl,
-      // "categories": categories?.map((category) => category)?.toList(),
-      // "tags": tags?.map((tag) => tag)?.toList(),
+      "categories": categories?.map((category) => category)?.toList(),
+      "tags": tags?.map((tag) => tag)?.toList(),
+      "guid": guid?.toMap(),
+      "status": status,
+      "slug": slug,
+      "type": type,
+      "modified": modified,
+      "modified_gmt": modifiedGmt,
+      "featuredMedia": featuredMedia,
+      "commentStatus": commentStatus,
+      "pingStatus": pingStatus,
+      "sticky": sticky,
+      "template": template,
     };
   }
 
