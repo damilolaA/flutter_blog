@@ -12,6 +12,10 @@ class Posts extends Equatable {
   Title title;
   Content content;
   Excerpt excerpt;
+  num author;
+  String imageUrl;
+  List<num> categories;
+  List<num> tags;
 
   Posts({
     this.id,
@@ -20,6 +24,10 @@ class Posts extends Equatable {
     this.title,
     this.content,
     this.excerpt,
+    this.author,
+    this.imageUrl,
+    this.categories,
+    this.tags,
   });
 
   Posts.fromMap(Map<String, dynamic> map) {
@@ -29,6 +37,10 @@ class Posts extends Equatable {
     title = map['title'] != null ? Title.fromMap(map['title'].cast<String, dynamic>()) : null;
     content = map['content'] != null ? Content.fromMap(map['content'].cast<String, dynamic>()) : null;
     excerpt = map['excerpt'] != null ? Excerpt.fromMap(map['excerpt'].cast<String, dynamic>()) : null;
+    author = map['author'];
+    imageUrl = map['jetpack_featured_media_url'];
+    categories = map["categories"] != null ? (map['catergories'] as List)?.map((category) => category)?.toList() : null;
+    tags = map['tags'] != null ? (map['tags'] as List)?.map((tag) => tag)?.toList() : null;
   }
 
   Map<String, dynamic> toMap() {
@@ -36,9 +48,13 @@ class Posts extends Equatable {
       "id": id,
       "link": link,
       "date": date,
-      "title": title,
-      "content": content,
-      "excerpt": excerpt,
+      "title": title?.toMap(),
+      "content": content?.toMap(),
+      "excerpt": excerpt?.toMap(),
+      "author": author,
+      "imageUrl": imageUrl,
+      "categories": categories?.map((category) => category)?.toList(),
+      "tags": tags?.map((tag) => tag)?.toList(),
     };
   }
 
