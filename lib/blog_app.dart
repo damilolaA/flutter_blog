@@ -22,6 +22,7 @@ class _BlogAppState extends State<BlogApp> {
   BlogOptions _options;
   UserBloc _userBloc;
   AuthenticationBloc _authenticationBloc;
+  PostsBloc _postsBloc;
 
   @override
   void initState() {
@@ -36,6 +37,8 @@ class _BlogAppState extends State<BlogApp> {
     _userBloc = UserBloc();
     _authenticationBloc = AuthenticationBloc();
     _authenticationBloc.dispatch(AppStarted());
+    _postsBloc = PostsBloc();
+    _postsBloc.dispatch(FetchPost(config: widget.config));
   }
 
   void _onOptionsChanged(BlogOptions newOptions) {
@@ -48,6 +51,7 @@ class _BlogAppState extends State<BlogApp> {
   void dispose() {
     _userBloc.dispose();
     _authenticationBloc.dispose();
+    _postsBloc.dispose();
     super.dispose();
   }
 

@@ -1,12 +1,19 @@
+import 'package:meta/meta.dart';
 import 'package:blog_app/models/index.dart';
 import 'package:equatable/equatable.dart';
 
-class PostsStates extends Equatable {
+class PostsState extends Equatable {
 
-  PostsStates([ List props = const [] ]) : super(props);
+  PostsState([ List props = const [] ]) : super(props);
 }
 
-class EmptyPosts extends PostsStates {}
+class EmptyPost extends PostsState {}
 
-class PostsError extends PostsStates {}
+class PostsError extends PostsState {}
+
+class PostsLoaded extends PostsState {
+  final Posts posts;
+
+  PostsLoaded({@required this.posts});
+}
 
