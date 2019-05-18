@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'app_config.dart';
 import 'styles/index.dart';
 import 'custom/index.dart';
+import 'states/index.dart';
+import 'events/index.dart';
 import './bloc/index.dart';
 import './widgets/scenes/index.dart';
 
@@ -19,6 +21,7 @@ class BlogApp extends StatefulWidget {
 class _BlogAppState extends State<BlogApp> {
   BlogOptions _options;
   UserBloc _userBloc;
+  AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {
@@ -31,6 +34,8 @@ class _BlogAppState extends State<BlogApp> {
 
   void _createBloc() {
     _userBloc = UserBloc();
+    _authenticationBloc = AuthenticationBloc();
+    _authenticationBloc.dispatch(AppStarted());
   }
 
   void _onOptionsChanged(BlogOptions newOptions) {
@@ -41,6 +46,8 @@ class _BlogAppState extends State<BlogApp> {
 
   @override
   void dispose() {
+    _userBloc.dispose();
+    _authenticationBloc.dispose();
     super.dispose();
   }
 
@@ -54,8 +61,15 @@ class _BlogAppState extends State<BlogApp> {
           title: "Blog App",
           theme: _options.theme.data,
           debugShowCheckedModeBanner: false,
-          home: Splash(),
-          // home: Main(_options, _onOptionsChanged),
+          // home: Splash(),
+          home: BlocBuilder<AuthenticationEvent, AuthenticationState>(
+            bloc: _authenticationBloc,
+            builder: (BuildContext context, AuthenticationState state) {
+              if(state is AuthenticationInitialized) {
+                return Splash();
+              }
+            },
+          ),
           routes: <String, WidgetBuilder>{
             "/Main": (BuildContext context) => Main(_options, _onOptionsChanged),
           },
