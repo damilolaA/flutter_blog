@@ -12,7 +12,7 @@ class EmptyPost extends PostsState {}
 class PostsError extends PostsState {}
 
 class PostsLoaded extends PostsState {
-  final Posts posts;
+  final List<Posts> posts;
 
   PostsLoaded({@required this.posts});
 }

@@ -4,10 +4,10 @@ abstract class AuthenticationState extends Equatable {
   AuthenticationState();
 }
 
-class AuthenticationUninitialized extends AuthenticationState {
-  @override
-  String toString() => "AunthenticationUninitialized";
-}
+// class AuthenticationUninitialized extends AuthenticationState {
+//   @override
+//   String toString() => "AunthenticationUninitialized";
+// }
 
 class AuthenticationInitialized extends AuthenticationState {
   @override

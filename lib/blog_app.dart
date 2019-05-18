@@ -71,6 +71,8 @@ class _BlogAppState extends State<BlogApp> {
             builder: (BuildContext context, AuthenticationState state) {
               if(state is AuthenticationInitialized) {
                 return Splash();
+              }else {
+                return Container();
               }
             },
           ),

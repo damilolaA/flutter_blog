@@ -15,7 +15,7 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     if(event is FetchPost) {
       try{
         PostsService postsService = PostsService(baseUrl: event.config.baseApiUrl);
-        final Posts posts = await postsService.fetchPosts();
+        final List<Posts> posts = await postsService.fetchPosts();
         yield PostsLoaded(posts: posts);
       }catch(error) {
         print('error, $error');

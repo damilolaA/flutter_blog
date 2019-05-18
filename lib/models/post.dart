@@ -5,8 +5,8 @@ import '../utils/index.dart';
 import './title.dart';
 import './content.dart';
 import './excerpt.dart';
-class Posts extends Equatable {
-  int id;
+class Post extends Equatable {
+  String id;
   String link;
   DateTime date;
   Title title;
@@ -14,10 +14,10 @@ class Posts extends Equatable {
   Excerpt excerpt;
   num author;
   String imageUrl;
-  // List<dynamic> categories;
-  // List<dynamic> tags;
+  List<num> categories;
+  List<num> tags;
 
-  Posts({
+  Post({
     this.id,
     this.link,
     this.date,
@@ -26,12 +26,12 @@ class Posts extends Equatable {
     this.excerpt,
     this.author,
     this.imageUrl,
-    // this.categories,
-    // this.tags,
+    this.categories,
+    this.tags,
   });
 
-  Posts.fromMap(Map<String, dynamic> map) {
-
+  Post.fromMap(Map<String, dynamic> map) {
+    print('map, $map');
     id = map['id'];
     link = map['link'];
     date = DateTime.fromMillisecondsSinceEpoch(parseDate(map['date'])) ?? DateTime.now();
@@ -40,8 +40,8 @@ class Posts extends Equatable {
     excerpt = map['excerpt'] != null ? Excerpt.fromMap(map['excerpt'].cast<String, dynamic>()) : null;
     author = map['author'];
     imageUrl = map['jetpack_featured_media_url'];
-    // categories = map["categories"] != null ? (map['catergories'] as List)?.map((category) => category)?.toList() : null;
-    // tags = map['tags'] != null ? (map['tags'] as List)?.map((tag) => tag)?.toList() : null;
+    categories = map["categories"] != null ? (map['catergories'] as List)?.map((category) => category)?.toList() : null;
+    tags = map['tags'] != null ? (map['tags'] as List)?.map((tag) => tag)?.toList() : null;
   }
 
   Map<String, dynamic> toMap() {
@@ -54,8 +54,8 @@ class Posts extends Equatable {
       "excerpt": excerpt?.toMap(),
       "author": author,
       "imageUrl": imageUrl,
-      // "categories": categories?.map((category) => category)?.toList(),
-      // "tags": tags?.map((tag) => tag)?.toList(),
+      "categories": categories?.map((category) => category)?.toList(),
+      "tags": tags?.map((tag) => tag)?.toList(),
     };
   }
 
