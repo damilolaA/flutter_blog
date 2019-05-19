@@ -32,6 +32,9 @@ class Posts extends Equatable {
   String format;
   Meta meta;
   bool jetpackSharingEnabled;
+  String jetpackShortLink;
+  String jetpackFeaturedMediaUrl;
+  List<dynamic> jetpackPublicizeConnections;
 
   Posts({
     this.id,
@@ -59,6 +62,9 @@ class Posts extends Equatable {
     this.format,
     this.meta,
     this.jetpackSharingEnabled,
+    this.jetpackShortLink,
+    this.jetpackFeaturedMediaUrl,
+    this.jetpackPublicizeConnections,
   });
 
   Posts.fromMap(Map<String, dynamic> map) {
@@ -88,6 +94,10 @@ class Posts extends Equatable {
     format = map['format'];
     meta = map['meta'] != null ? Meta.fromMap(map['meta'].cast<String, dynamic>()) : null;
     jetpackSharingEnabled = map['jetpack_sharing_enabled']; 
+    jetpackShortLink = map['jetpack_shortlink'];
+    jetpackFeaturedMediaUrl = map['jetpack_featured_media_url'];
+    jetpackPublicizeConnections = map['jetpack_publicize_connections'] != null ? 
+      (map['jetpack_publicize_connections'] as List)?.map((connection) => connection)?.toList() : null;
   }
 
   Map<String, dynamic> toMap() {
@@ -116,6 +126,8 @@ class Posts extends Equatable {
       "format": format,
       "meta": meta?.toMap(),
       "jetpackSharingEnabled": jetpackSharingEnabled,
+      "jetpackShortLink": jetpackShortLink,
+      "jetpackFeaturedMediaUrl": jetpackFeaturedMediaUrl,
     };
   }
 

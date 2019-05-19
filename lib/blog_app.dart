@@ -38,7 +38,7 @@ class _BlogAppState extends State<BlogApp> {
     _authenticationBloc = AuthenticationBloc();
     _authenticationBloc.dispatch(AppStarted());
     _postsBloc = PostsBloc();
-    _postsBloc.dispatch(FetchPost(config: widget.config));
+    // _postsBloc.dispatch(FetchPost(config: widget.config));
   }
 
   void _onOptionsChanged(BlogOptions newOptions) {
@@ -77,7 +77,8 @@ class _BlogAppState extends State<BlogApp> {
             },
           ),
           routes: <String, WidgetBuilder>{
-            "/Main": (BuildContext context) => Main(_options, _onOptionsChanged),
+            "/Main": (BuildContext context) => Main(widget.config ,_options, _onOptionsChanged),
+            "/Latest": (BuildContext context) => Latest(config: widget.config),
           },
         ),
       ),

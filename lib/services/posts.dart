@@ -15,8 +15,12 @@ class PostsService {
       '$baseUrl/v2/posts'
     );
 
-    final results = json.decode(response.body);
-    List<Posts> posts = results.map((post) => Posts.fromMap(post)).toList();
+    List results = json.decode(response.body);
+    // List<Posts> posts = results.map((post) => Posts.fromMap(post)).toList();
+    List<Posts> posts = results.map((post) {
+      post.remove("_links");
+      return Posts.fromMap(post);
+    }).toList();
     return posts;
   }
 }

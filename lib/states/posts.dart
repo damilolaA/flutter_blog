@@ -11,9 +11,10 @@ class EmptyPost extends PostsState {}
 
 class PostsError extends PostsState {}
 
+class PostsLoading extends PostsState{}
 class PostsLoaded extends PostsState {
   final List<Posts> posts;
 
-  PostsLoaded({@required this.posts});
+  PostsLoaded({@required this.posts}) : assert(posts != null), super([posts]);
 }
 

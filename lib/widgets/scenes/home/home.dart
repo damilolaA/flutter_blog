@@ -1,16 +1,15 @@
+import 'package:blog_app/app_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../custom/index.dart';
-import '../../../bloc/index.dart';
 import '../../../styles/index.dart';
-import '../../../blog_app.dart';
 import '../index.dart';
 
 class Main extends StatefulWidget {
   final BlogOptions options;
   final onChanged;
+  final AppConfig config;
 
-  Main(this.options, this.onChanged);
+  Main(this.config, this.options, this.onChanged);
 
   MainState createState() => MainState();
 }
@@ -80,9 +79,9 @@ class MainState extends State<Main> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          Latest(),
-          Latest(),
-          Latest(),
+          Latest(config: widget.config,),
+          Latest(config: widget.config,),
+          Latest(config: widget.config,),
         ],
       ),
     );
