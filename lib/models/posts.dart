@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
 import '../utils/index.dart';
@@ -6,6 +5,7 @@ import './title.dart';
 import './content.dart';
 import './excerpt.dart';
 import './guid.dart';
+import './meta.dart';
 class Posts extends Equatable {
   int id;
   String link;
@@ -29,6 +29,9 @@ class Posts extends Equatable {
   String pingStatus;
   bool sticky;
   String template;
+  String format;
+  Meta meta;
+  bool jetpackSharingEnabled;
 
   Posts({
     this.id,
@@ -53,6 +56,9 @@ class Posts extends Equatable {
     this.pingStatus,
     this.sticky,
     this.template,
+    this.format,
+    this.meta,
+    this.jetpackSharingEnabled,
   });
 
   Posts.fromMap(Map<String, dynamic> map) {
@@ -79,6 +85,9 @@ class Posts extends Equatable {
     pingStatus = map['ping_status'];
     sticky = map['sticky'];
     template = map['template'];
+    format = map['format'];
+    meta = map['meta'] != null ? Meta.fromMap(map['meta'].cast<String, dynamic>()) : null;
+    jetpackSharingEnabled = map['jetpack_sharing_enabled']; 
   }
 
   Map<String, dynamic> toMap() {
@@ -104,6 +113,9 @@ class Posts extends Equatable {
       "pingStatus": pingStatus,
       "sticky": sticky,
       "template": template,
+      "format": format,
+      "meta": meta?.toMap(),
+      "jetpackSharingEnabled": jetpackSharingEnabled,
     };
   }
 
