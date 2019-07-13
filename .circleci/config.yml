@@ -7,6 +7,9 @@ jobs:
       - checkout
       - run: flutter doctor
       - run:
+          name: Install missing gems
+          command: cd ./android && bundle install
+      - run:
           name: Run fastlane test
           command: cd ./android/fastlane && bundle exec fastlane test
       
