@@ -7,9 +7,15 @@ class PostsState extends Equatable {
   PostsState([ List props = const [] ]) : super(props);
 }
 
-class EmptyPost extends PostsState {}
+class EmptyPost extends PostsState {
+  @override
+  String toString() => "Empty Post";
+}
 
-class PostsError extends PostsState {}
+class PostsError extends PostsState {
+  @override 
+  String toString() => "Post Error";
+}
 
 class PostsLoading extends PostsState{}
 class PostsLoaded extends PostsState {

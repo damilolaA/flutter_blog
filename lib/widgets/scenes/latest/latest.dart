@@ -52,6 +52,18 @@ class LatestState extends State<Latest> {
             ),
           );
         }
+        if(state is EmptyPost) {
+          return Container();
+        }
+        if(state is PostsError) {
+          return Container(
+            child: Center(
+              child: Text(
+                "An error occurred"
+              ),
+            ),
+          );
+        }
       },
     );
   }

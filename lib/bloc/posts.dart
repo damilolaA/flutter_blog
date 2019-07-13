@@ -19,8 +19,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         final List<Posts> posts = await postsService.fetchPosts();
         yield PostsLoaded(posts: posts);
       }catch(error) {
-        yield PostsError();
         print('error, $error');
+        yield PostsError();
       }
     }
   }
