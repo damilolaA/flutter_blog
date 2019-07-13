@@ -7,6 +7,9 @@ jobs:
       - checkout
       - run: flutter doctor
       - run:
+          name: Install dependencies
+          command: sudo apt-get install build-essential patch ruby-dev zlib1g-dev liblzma-dev
+      - run:
           name: Install Nokogiri
           command: sudo gem install nokogiri -v '1.6.7.1'
       - run:
