@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install pkg-config
-          command: sudo apt-get install pkg-config
+          command: sudo apt-get libssl-dev install pkg-config
       - run: 
           name: set nokogiri config
           command: bundle config build.nokogiri --use-system-libraries
