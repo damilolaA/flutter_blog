@@ -1,14 +1,15 @@
 version: 2
 jobs:
   build:
-    macos:
-      xcode: "10.1.0"
+    docker:
+      - image: cirrusci/flutter
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
+      - run: flutter doctor
       - run:
           name: Install missing gems
-          command: cd ./android && bundle install
+          command: gem install bundler && cd ./android && bundle install
       - run:
           name: Run fastlane test
           command: cd ./android/fastlane && bundle exec fastlane test
