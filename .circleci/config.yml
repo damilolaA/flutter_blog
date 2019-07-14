@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: ruby version
-          command: ruby -v
+          name: Install missing gems
+          command: cd ./android/ && bundle install
       - run:
           name: Run fastlane test
           command: cd ./android/fastlane && bundle exec fastlane test
