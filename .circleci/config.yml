@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: cirrusci/flutter
-    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
       - run: flutter doctor
