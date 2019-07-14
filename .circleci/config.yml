@@ -5,15 +5,9 @@ jobs:
       - image: cirrusci/flutter
     steps:
       - checkout
-      - run:
-          name: Install pkg-config
-          command: sudo apt-get libssl-dev install pkg-config
       - run: 
-          name: set nokogiri config
-          command: bundle config build.nokogiri --use-system-libraries
-      - run:
-          name: Install missing gems
-          command: cd ./android && bundle install
+          name: ruby version
+          command: ruby -v
       - run:
           name: Run fastlane test
           command: cd ./android/fastlane && bundle exec fastlane test
