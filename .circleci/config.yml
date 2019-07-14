@@ -1,14 +1,11 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: cirrusci/flutter
+    macos:
+      xcode: "10.1.0"
+    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - run: flutter doctor
-      - run: 
-          name: Install Nokogiri
-          command: cd ./android && sudo apt-get install libxml2-utils
       - run:
           name: Install missing gems
           command: cd ./android && bundle install
