@@ -5,10 +5,15 @@ jobs:
       - image: cirrusci/flutter
     steps:
       - checkout
-      - run: flutter doctor
+      - run:
+          name: Install pkg-config
+          command: sudo apt-get install pkg-config
+      - run: 
+          name: set nokogiri config
+          command: bundle config build.nokogiri --use-system-libraries
       - run:
           name: Install missing gems
-          command: gem install bundler && cd ./android && bundle install
+          command: cd ./android && bundle install
       - run:
           name: Run fastlane test
           command: cd ./android/fastlane && bundle exec fastlane test
