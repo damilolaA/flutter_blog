@@ -7,12 +7,6 @@ jobs:
       - checkout
       - run: flutter doctor
       - run:
-          name: Install dependencies
-          command: sudo apt-get install openssl ruby-openssl libssl-dev
-      - run:
-          name: Install Nokogiri
-          command: sudo gem install nokogiri -v '1.6.7.1'
-      - run:
           name: Install missing gems
           command: cd ./android && bundle install
       - run:
