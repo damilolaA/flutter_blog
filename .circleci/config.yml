@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run: flutter doctor
+      - run: 
+          name: Install Nokogiri
+          command: cd ./android && bundle config build.nokogiri --use-system-libraries
       - run:
           name: Install missing gems
           command: cd ./android && bundle install
