@@ -5,6 +5,9 @@ jobs:
       - image: cirrusci/flutter
     steps:
       - checkout
+      - run:
+          name: Install zlib1g
+          command: sudo apt-get install zlib1g-dev
       - run: 
           name: Install missing gems
           command: cd ./android/ && bundle install
